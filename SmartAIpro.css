@@ -1,0 +1,241 @@
+/* Import Bootstrap */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css");
+
+/* Global Styles */
+body {
+  font-family: 'Helvetica', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #313841;
+  background-color: #eeeeee;
+  line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+  background: linear-gradient(to right, #09adb5, #313841);
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+/* Navigation Bar */
+nav {
+  background-color: #313841;
+  display: flex;
+  justify-content: center;
+  padding: 15px 0;
+  border-bottom: 3px solid #09adb5;
+}
+nav a {
+  color: #eeeeee;
+  text-decoration: none;
+  margin: 0 20px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+nav a:hover {
+  color: #09adb5;
+}
+nav a:focus {
+  color: #ffffff;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(to bottom right, #09adb5, #313841);
+  color: #ffffff;
+  text-align: center;
+  padding: 80px 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+.hero h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.hero p {
+  font-size: 1.4rem;
+  max-width: 800px;
+  margin: auto;
+  line-height: 1.8;
+}
+.bhero {
+  background: linear-gradient(to bottom right, #09adb5, #313841);
+  color: #ffffff;
+  text-align: center;
+  padding: 80px 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+.bhero h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+
+.bhero p {
+  font-size: 1.4rem;
+  max-width: 800px;
+  margin: auto;
+  color:lightgreen;
+  line-height: 1.8;
+}
+
+.chero {
+  background: linear-gradient(to bottom right, #09adb5, #313841);
+  color: #ffffff;
+  text-align: center;
+  padding: 80px 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+.chero h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.chero p {
+  font-size: 1.4rem;
+  max-width: 800px;
+  margin: auto;
+  color:red;
+  line-height: 1.8;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+/* Services Section */
+.services {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Create a 2-column grid */
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.service {
+  background: #ffffff;
+  border: 3px solid #09adb5;
+  border-radius: 12px;
+  padding: 25px;
+  height: 300px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.service:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.service h3 {
+  color: #09adb5;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.service p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.service a {
+  display: inline-block;
+  margin-top: 15px;
+  text-decoration: none;
+  color: #09adb5;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.service a:hover {
+  color: #007f89;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .services {
+    grid-template-columns: 1fr; /* Stack the services in one column on small screens */
+    bottom: 20px;
+  }
+  .service {
+    height: auto; /* Allow service boxes to resize on smaller screens */
+  }
+  .hero h2 {
+    font-size: 2.2rem;
+  }
+  .hero p {
+    font-size: 1.1rem;
+  }
+}
+
+
+
+/* CTA Section */
+.cta {
+  text-align: center;
+  margin: 60px 0;
+  padding: 40px 20px;
+  background: linear-gradient(to top right, #313841, #09adb5);
+  color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+.cta button {
+  background-color: #09adb5;
+  color: #ffffff;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.cta button:hover {
+  background-color: #007f89;
+  transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+  background-color: #313841;
+  color: #eeeeee;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+}
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .services {
+    flex-direction: column;
+    align-items: center;
+  }
+  .service {
+    width: 90%;
+    height: auto;
+  }
+  .hero h2 {
+    font-size: 2.2rem;
+  }
+  .hero p {
+    font-size: 1.1rem;
+  }
+}

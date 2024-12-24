@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lead Generation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      color: #313841;
+      background-color: #eeeeee;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    header {
+      background: #09adb5;
+      color: #eeeeee;
+      text-align: center;
+      padding: 20px 0;
+      flex: 0 1 80px; /* Keeps the header fixed at a reasonable height */
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    main {
+      padding: 20px;
+      flex: 1; /* Makes the main content area flexible to take remaining space */
+      overflow: auto;
+    }
+    .search-section {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .search-section h2 {
+      color: #313841;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+    #searchInput {
+      width: 80%;
+      max-width: 500px;
+      padding: 10px;
+      font-size: 1rem;
+      border: 2px solid #09adb5;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    #searchButton {
+      background-color: #09adb5;
+      color: #eeeeee;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #searchButton:hover {
+      background-color: #007f89;
+    }
+    .results {
+      margin-top: 20px;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: auto;
+      max-width: 800px;
+    }
+    th, td {
+      border: 1px solid #313841;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #313841;
+      color: #eeeeee;
+    }
+    tbody tr:nth-child(even) {
+      background-color: #f4f4f4;
+    }
+    footer {
+      background-color: #313841;
+      color: #eeeeee;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 20px;
+      flex: 0 1 60px; /* Keeps the footer fixed at a reasonable height */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Marketing Lead Generation</h1>
+  </header>
+  <main>
+    <section class="search-section">
+      <h2>Find Your Leads</h2>
+      <input type="text" id="searchInput" placeholder="Enter company name, domain, or keyword..." />
+      <button id="searchButton">Search</button>
+      <div class="results">
+        <table>
+          <thead>
+            <tr>
+              <th>Company Name</th>
+              <th>Contact Name</th>
+              <th>Job Title</th>
+              <th>Email Address</th>
+            </tr>
+          </thead>
+          <tbody id="resultsTable">
+            <!-- Dynamic results will be appended here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2024 Marketing Lead Generation. All rights reserved.</p>
+  </footer>
+  <script>
+    const generateRandomData = () => {
+      const names = ['Alice Johnson', 'Bob Smith', 'Charlie Brown', 'Diana Prince', 'Eve Adams'];
+      const titles = ['Marketing Lead', 'Manager', 'Consultant', 'Director', 'Lead Developer'];
+      const domains = ['example.com', 'company.org', 'business.net', 'startup.io', 'techhub.co'];
+
+      const randomIndex = () => Math.floor(Math.random() * 5);
+
+      return {
+        contact: names[randomIndex()],
+        title: titles[randomIndex()],
+        email: `${names[randomIndex()].split(' ')[0].toLowerCase()}@${domains[randomIndex()]}`
+      };
+    };
+
+    document.getElementById('searchButton').addEventListener('click', () => {
+      const query = document.getElementById('searchInput').value.trim();
+      const resultsTable = document.getElementById('resultsTable');
+      resultsTable.innerHTML = ''; // Clear previous results
+
+      if (!query) {
+        alert('Please enter a company name.');
+        return;
+      }
+
+      const randomData = generateRandomData();
+
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${query}</td>
+        <td>${randomData.contact}</td>
+        <td>${randomData.title}</td>
+        <td>${randomData.email}</td>
+      `;
+      resultsTable.appendChild(row);
+    });
+  </script>
+</body>
+</html>
