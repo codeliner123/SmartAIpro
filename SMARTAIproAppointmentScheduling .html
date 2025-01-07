@@ -19,20 +19,13 @@
       background-color: #09adb5;
     }
     main {
-  flex: 1;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  overflow-y: auto;
-}
-
-.appointments-container {
-  margin-top: 30px;
-  max-height: 300px; /* Limit height for the list */
-  overflow-y: auto; /* Enable scrolling */
-  padding-bottom: 20px; /* Prevent content from touching the footer */
-}
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow-y: auto;
+    }
     .calendar-container {
       max-width: 800px;
       margin: auto;
@@ -42,22 +35,35 @@
       padding: 20px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-    .calendar-day {
+    .calendar-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .calendar-grid > div {
       padding: 15px;
       border: 2px solid #09adb5;
       border-radius: 8px;
       background-color: #ffffff;
+      text-align: center;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s ease;
     }
-    .calendar-day.booked {
+    .calendar-grid > div.booked {
       background-color: #313841;
       color: #ffffff;
       cursor: not-allowed;
     }
-    .calendar-day:hover:not(.booked) {
+    .calendar-grid > div:hover:not(.booked) {
       background-color: #09adb5;
       color: #ffffff;
+    }
+    .form-container {
+      margin-top: 20px;
+      display: none;
+    }
+    .form-container input, .form-container select, .form-container button {
+      margin-bottom: 10px;
     }
     .appointments-container {
       margin-top: 30px;
@@ -86,9 +92,21 @@
       color: white;
       text-align: center;
       padding: 10px;
-      position: fixed;
-      bottom: 0;
       width: 100%;
+    }
+    @media (min-width: 768px) {
+      .calendar-grid {
+        grid-template-columns: repeat(7, 1fr);
+      }
+    }
+    @media (max-width: 767px) {
+      .calendar-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .form-container button {
+        padding: 15px;
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
@@ -104,12 +122,12 @@
           <option value="monthly">Monthly View</option>
         </select>
       </div>
-      <div class="calendar-grid d-grid gap-2" id="calendarGrid" style="grid-template-columns: repeat(7, 1fr);"></div>
-      <div class="form-container mt-4" id="formContainer" style="display: none;">
+      <div class="calendar-grid" id="calendarGrid"></div>
+      <div class="form-container" id="formContainer">
         <h3>Book an Appointment</h3>
-        <input type="text" id="name" class="form-control mb-2" placeholder="Your Name" required />
-        <input type="email" id="email" class="form-control mb-2" placeholder="Your Email" required />
-        <select id="service" class="form-select mb-2">
+        <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+        <input type="email" id="email" class="form-control" placeholder="Your Email" required>
+        <select id="service" class="form-select">
           <option value="consultation">Consultation</option>
           <option value="therapy">Therapy Session</option>
           <option value="haircut">Haircut</option>
@@ -133,17 +151,14 @@
     const formContainer = document.getElementById('formContainer');
     const viewSelector = document.getElementById('viewSelector');
     const appointmentsList = document.getElementById('appointmentsList');
-
     const appointments = [];
 
     const daysInMonth = (month, year) => new Date(year, month + 1, 0).getDate();
 
     function generateWeeklyCalendar() {
       calendarGrid.innerHTML = '';
-      const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-      daysOfWeek.forEach((day) => {
+      ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].forEach(day => {
         const dayDiv = document.createElement('div');
-        dayDiv.classList.add('calendar-day');
         dayDiv.textContent = day;
         dayDiv.addEventListener('click', () => handleDayClick(dayDiv, day));
         calendarGrid.appendChild(dayDiv);
@@ -155,7 +170,6 @@
       const totalDays = daysInMonth(new Date().getMonth(), new Date().getFullYear());
       for (let i = 1; i <= totalDays; i++) {
         const dayDiv = document.createElement('div');
-        dayDiv.classList.add('calendar-day');
         dayDiv.textContent = `Day ${i}`;
         dayDiv.addEventListener('click', () => handleDayClick(dayDiv, `Day ${i}`));
         calendarGrid.appendChild(dayDiv);
@@ -176,8 +190,7 @@
       const selectedDay = formContainer.getAttribute('data-selected-day');
 
       if (name && email && service) {
-        const appointment = { name, email, service, day: selectedDay };
-        appointments.push(appointment);
+        appointments.push({ name, email, service, day: selectedDay });
         updateAppointmentsList();
         alert('Appointment Confirmed!');
         formContainer.style.display = 'none';
@@ -197,11 +210,7 @@
     }
 
     function updateCalendarView() {
-      if (viewSelector.value === 'weekly') {
-        generateWeeklyCalendar();
-      } else {
-        generateMonthlyCalendar();
-      }
+      viewSelector.value === 'weekly' ? generateWeeklyCalendar() : generateMonthlyCalendar();
     }
 
     viewSelector.addEventListener('change', updateCalendarView);
