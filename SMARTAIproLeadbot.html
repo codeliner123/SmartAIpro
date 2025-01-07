@@ -17,22 +17,21 @@
       line-height: 1.6;
       display: flex;
       flex-direction: column;
-      height: 100vh;
+      min-height: 100vh;
     }
     header {
       background: #09adb5;
       color: #eeeeee;
       text-align: center;
-      padding: 20px 0;
-      flex: 0 1 80px; /* Keeps the header fixed at a reasonable height */
+      padding: 20px;
     }
     header h1 {
       margin: 0;
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
     main {
       padding: 20px;
-      flex: 1; /* Makes the main content area flexible to take remaining space */
+      flex: 1;
       overflow: auto;
     }
     .search-section {
@@ -42,11 +41,11 @@
     }
     .search-section h2 {
       color: #313841;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       margin-bottom: 15px;
     }
     #searchInput {
-      width: 80%;
+      width: 90%;
       max-width: 500px;
       padding: 10px;
       font-size: 1rem;
@@ -81,6 +80,7 @@
       border: 1px solid #313841;
       padding: 10px;
       text-align: left;
+      font-size: 0.9rem;
     }
     th {
       background-color: #313841;
@@ -93,9 +93,37 @@
       background-color: #313841;
       color: #eeeeee;
       text-align: center;
-      padding: 15px 0;
-      margin-top: 20px;
-      flex: 0 1 60px; /* Keeps the footer fixed at a reasonable height */
+      padding: 15px;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+      .search-section h2 {
+        font-size: 1.3rem;
+      }
+      #searchInput {
+        font-size: 0.9rem;
+        padding: 8px;
+      }
+      #searchButton {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+      }
+      th, td {
+        font-size: 0.8rem;
+        padding: 8px;
+      }
+    }
+    @media (max-width: 480px) {
+      #searchInput {
+        width: 100%;
+      }
+      table {
+        font-size: 0.8rem;
+      }
     }
   </style>
 </head>
